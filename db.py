@@ -16,11 +16,11 @@ def fetch_players():
     return response.data
 
 def fetch_users():
-    response = supabase.table("users").select("*").execute()
+    response = supabase.table("league_users").select("*").execute()
     return response.data
 
 def add_user(friend_name: str, team_name: str):
-    response = supabase.table("users").insert({
+    response = supabase.table("league_users").insert({
         "friend_name": friend_name,
         "team_name": team_name
     }).execute()
