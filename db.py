@@ -1,11 +1,10 @@
 import streamlit as st
 from supabase import create_client, Client
 
-# REPLACE THESE TWO STRINGS WITH YOUR ACTUAL SUPABASE CREDENTIALS
 SUPABASE_URL = "https://apclcfuuyicudfhllxlv.supabase.co"
 SUPABASE_KEY = "sb_publishable_LAeVM0z3u7JDtnQWGLz76g_0GUfkjhx"
 
-@st.cache_resource
+# We removed @st.cache_resource here so Streamlit is forced to use the new URL
 def get_supabase() -> Client:
     return create_client(SUPABASE_URL, SUPABASE_KEY)
 
