@@ -2,7 +2,7 @@ import streamlit as st
 from supabase import create_client, Client
 
 # REPLACE THESE TWO STRINGS WITH YOUR ACTUAL SUPABASE CREDENTIALS
-SUPABASE_URL = "https://apclcfuuyicudfhllxlv.supabase.co/rest/v1/# Must start with https://"
+SUPABASE_URL = "https://apclcfuuyicudfhllxlv.supabase.co/rest/v1/"# Must start with https://"
 SUPABASE_KEY = "sb_publishable_LAeVM0z3u7JDtnQWGLz76g_0GUfkjhx"               # Your publishable key from Supabase
 
 @st.cache_resource
