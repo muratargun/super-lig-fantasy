@@ -1,20 +1,27 @@
 import streamlit as st
 from supabase import create_client, Client
 
-# Initialize Supabase client using secrets or direct strings
+# REPLACE THESE TWO STRINGS WITH YOUR ACTUAL SUPABASE CREDENTIALS
+SUPABASE_URL = https://apclcfuuyicudfhllxlv.supabase.co/rest/v1/# Must start with https://
+SUPABASE_KEY = sb_publishable_LAeVM0z3u7JDtnQWGLz76g_0GUfkjhx               # Your publishable key from Supabase
+
 @st.cache_resource
-def init_supabase() -> Client:
-    # Replace these strings with your actual Supabase URL and Anon Key
-    url = st.secrets.get("SUPABASE_URL", "YOUR_SUPABASE_URL_HERE")
-    key = st.secrets.get("SUPABASE_KEY", "YOUR_SUPABASE_KEY_HERE")
-    return create_client(url, key)
+def get_supabase() -> Client:
+    return create_client(SUPABASE_URL, SUPABASE_KEY)
 
-supabase = init_supabase()
+supabase = get_supabase()
 
-def get_all_players():
+def fetch_players():
     response = supabase.table("players").select("*").execute()
     return response.data
 
-def get_users():
+def fetch_users():
     response = supabase.table("users").select("*").execute()
+    return response.data
+
+def add_user(friend_name: str, team_name: str):
+    response = supabase.table("users").insert({
+        "friend_name": friend_name,
+        "team_name": team_name
+    }).execute()
     return response.data
